@@ -19,12 +19,17 @@ const productSchema = new Schema({
         type: Number,
         required: true
     },
-    sizes: [{
-        size: String
-    }],
-    tags: [{
-        tags: String
-    }]
+    sizes: {
+        type: [String],
+        required: true
+    },
+    tags: {
+        type: [String]
+    },
+    details: {
+        type: String,
+        required: true
+    }
 }, {
     timestamps: true
 })

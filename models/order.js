@@ -21,7 +21,7 @@ const orderSchema = new Schema({
     }],
     status: {
         type: String,
-        default:'On process'
+        default: 'Yet to be confirmed'
     },
     expDate: {
         type: String,

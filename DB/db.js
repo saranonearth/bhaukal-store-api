@@ -5,8 +5,11 @@ module.exports = function () {
         mongoose.connect(process.env.MONGOURI, {
             useNewUrlParser: true,
             useCreateIndex: true,
+            useFindAndModify: false
+        }, () => {
+            console.log('DB Connected')
         })
-        console.log('DB Connected')
+
     } catch (error) {
         console.log('DB connection failed')
     }

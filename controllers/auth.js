@@ -5,6 +5,8 @@ const {
     validationResult
 } = require('express-validator');
 
+//  Signup logic
+
 exports.postSignup = async (req, res) => {
 
     const {
@@ -46,7 +48,7 @@ exports.postSignup = async (req, res) => {
         }
 
         const token = await jwt.sign(payload, process.env.TOKENSEC, {
-            expiresIn: '1h'
+            expiresIn: '24h'
         })
 
         if (token) {
@@ -67,6 +69,8 @@ exports.postSignup = async (req, res) => {
     }
 
 };
+
+// Login Logic
 
 exports.postSignin = async (req, res) => {
     const {
@@ -106,7 +110,7 @@ exports.postSignin = async (req, res) => {
             userId: user._id
         }
         const token = await jwt.sign(payload, process.env.TOKENSEC, {
-            expiresIn: '1h'
+            expiresIn: '24h'
         })
 
         if (token) {

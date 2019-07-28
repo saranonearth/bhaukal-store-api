@@ -6,7 +6,7 @@ const {
 
 router.post('/signup', [
     check('name', 'Name is required').not().isEmpty(),
-    check('email', 'Email field cannot be empty').not().isEmpty(),
+    check('email', 'Email field cannot be empty').not().isEmpty().isEmail().withMessage('Enter a valid email'),
     check('password').not().isEmpty().withMessage('Password field cannot be empty')
     .isLength({
         min: 6

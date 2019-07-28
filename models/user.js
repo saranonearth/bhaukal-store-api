@@ -9,11 +9,21 @@ const UserSchema = new Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        trim: true
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        trim: true
+    },
+    dob: {
+        type: Date,
+        default: null
+    },
+    mobileNumber: {
+        type: String,
+        default: null
     },
     address: [{
         name: String,
@@ -32,6 +42,7 @@ const UserSchema = new Schema({
         type: String,
         default: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
     }
+
 }, {
     timestamps: true
 })
