@@ -9,6 +9,10 @@ const orderSchema = new Schema({
         type: String,
         default: shortid.generate
     },
+    userId: {
+        type: Schema.Types.ObjectId,
+        required: true
+    },
     products: [{
         product: {
             type: Schema.Types.ObjectId,

@@ -145,12 +145,19 @@ exports.getProducts = async (req, res) => {
 
 }
 
-exports.getAllOrders = async (req, res) => {
+exports.getProduct = async (req, res) => {
+    const productId = req.params.productid
+
     try {
-        const orders = await Order.find({}).sort({
-            createdAt: -1
-        })
-        return res.status(200).json(orders)
+        const product = await Product.findById(productId)
+        if (!product) {
+            return res.status(404).json({
+                msg: 'Product not found'
+            })
+        }
+
+        res.status(200).json(product)
+
     } catch (error) {
         return res.status(422).json({
             errors: errors.array()

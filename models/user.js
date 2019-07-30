@@ -28,7 +28,9 @@ const UserSchema = new Schema({
     address: [{
         name: String,
         roomno: String,
-        hostel: String
+        hostel: String,
+        contact: String,
+        block: String
     }],
     cart: [{
         product: Schema.Types.ObjectId,

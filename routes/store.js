@@ -30,5 +30,5 @@ router.patch('/editproduct/:productid', [
 
 router.delete('/:productid', isAdmin, storeController.deleteProduct)
 router.get('/', storeController.getProducts)
-router.get('/', storeController.getAllOrders)
+router.get('/:productid', storeController.getProduct)
 module.exports = router;
