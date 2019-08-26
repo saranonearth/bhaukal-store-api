@@ -45,7 +45,11 @@ router.post('/messege', [
 
 
 //checkout
+
 //after intgrating paymentgateway
+
 ////get-all-orders
+
 //cancelorders
+
 module.exports = router;

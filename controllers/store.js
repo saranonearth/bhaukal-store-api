@@ -49,7 +49,9 @@ exports.postAddProduct = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(500).json({
-            msg: 'Server Error'
+            errors: [{
+                msg: 'Server Error'
+            }]
         })
     }
 
@@ -102,7 +104,9 @@ exports.editProduct = async (req, res) => {
 
     } catch (error) {
         return res.status(422).json({
-            errors: errors.array()
+            errors: [{
+                msg: 'Server Error'
+            }]
         })
     }
 }
@@ -114,7 +118,9 @@ exports.deleteProduct = async (req, res) => {
     try {
         await Product.findOneAndDelete(productId, (err) => {
             if (err) return res.json(422).json({
-                msg: 'Product delete failed'
+                errors: [{
+                    msg: 'Product delete failed'
+                }]
             })
 
             return res.status(200).json({
@@ -123,7 +129,9 @@ exports.deleteProduct = async (req, res) => {
         })
     } catch (error) {
         return res.status(422).json({
-            errors: errors.array()
+            errors: [{
+                msg: 'Server Error'
+            }]
         })
     }
 }
@@ -152,7 +160,9 @@ exports.getProduct = async (req, res) => {
         const product = await Product.findById(productId)
         if (!product) {
             return res.status(404).json({
-                msg: 'Product not found'
+                errors: [{
+                    msg: 'Product not found'
+                }]
             })
         }
 
@@ -160,7 +170,9 @@ exports.getProduct = async (req, res) => {
 
     } catch (error) {
         return res.status(422).json({
-            errors: errors.array()
+            errors: [{
+                msg: 'Server Error'
+            }]
         })
     }
 }

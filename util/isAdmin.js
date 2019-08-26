@@ -24,7 +24,6 @@ module.exports = isAdmin = async (req, res, next) => {
             })
         }
     } catch (error) {
-        console.log(error)
         res.status(401).json({
             msg: 'Token is not valid'
         });

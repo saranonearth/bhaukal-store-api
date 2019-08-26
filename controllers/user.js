@@ -16,7 +16,9 @@ exports.getUser = async (req, res) => {
         const user = await User.findById(userId)
         if (!user) {
             return res.status(404).json({
-                msg: 'User not found'
+                errors: [{
+                    msg: 'User not found'
+                }]
             })
         }
 
@@ -26,7 +28,9 @@ exports.getUser = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(500).json({
-            msg: 'Server Error'
+            errors: [{
+                msg: 'Server Error'
+            }]
         })
     }
 
@@ -43,7 +47,9 @@ exports.deleteUser = async (req, res) => {
         const user = await User.findById(userId)
         if (!user) {
             return res.status(404).json({
-                msg: 'User not found'
+                errors: [{
+                    msg: 'User not found'
+                }]
             })
         }
 
@@ -55,7 +61,9 @@ exports.deleteUser = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(500).json({
-            msg: 'Server Error'
+            errors: [{
+                msg: 'Server Error'
+            }]
         })
     }
 }
@@ -93,7 +101,9 @@ exports.editUser = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(500).json({
-            msg: 'Server Error'
+            errors: [{
+                msg: 'Server Error'
+            }]
         })
     }
 }
@@ -127,7 +137,9 @@ exports.addToCart = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(500).json({
-            msg: 'Server Error'
+            errors: [{
+                msg: 'Server Error'
+            }]
         })
     }
 }
@@ -135,7 +147,7 @@ exports.addToCart = async (req, res) => {
 exports.removeFromCart = async (req, res) => {
     const productId = req.params.productid;
     try {
-        const user = await User.findOneAndUpdate({
+        await User.findOneAndUpdate({
             _id: req.userId
         }, {
             "$pull": {
@@ -159,7 +171,9 @@ exports.removeFromCart = async (req, res) => {
     } catch (error) {
         console.log(error.kind)
         res.status(500).json({
-            msg: 'Server Error'
+            errors: [{
+                msg: 'Server Error'
+            }]
         })
     }
 }
@@ -176,7 +190,9 @@ exports.updateQty = async (req, res) => {
             }
         }, (err, user) => {
             if (err) return res.status(422).json({
-                msg: 'Something went wrong'
+                errors: [{
+                    msg: 'Something went wrong'
+                }]
             })
             return res.status(200).json({
                 cart: user.cart
@@ -185,7 +201,9 @@ exports.updateQty = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(500).json({
-            msg: 'Server Error'
+            errors: [{
+                msg: 'Server Error'
+            }]
         })
     }
 }
@@ -219,7 +237,9 @@ exports.postMessage = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(500).json({
-            msg: 'Server Error'
+            errors: [{
+                msg: 'Server Error'
+            }]
         })
     }
 }
@@ -242,13 +262,7 @@ exports.postAddAddress = async (req, res) => {
 
     try {
 
-        const newAddress = {
-            name,
-            roomno,
-            contact,
-            hostel,
-            block
-        }
+
         const user = await User.findById(req.userId)
 
         user.address.push({
@@ -268,7 +282,9 @@ exports.postAddAddress = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(500).json({
-            msg: 'Server Error'
+            errors: [{
+                msg: 'Server Error'
+            }]
         })
     }
 
@@ -292,7 +308,9 @@ exports.removeAddress = async (req, res) => {
             multi: true
         }, (err, user) => {
             if (err) return res.status(422).json({
-                msg: 'Something went wrong'
+                errors: [{
+                    msg: 'Something went wrong'
+                }]
             })
             return res.status(200).json({
                 msg: 'Address Removed',
@@ -304,7 +322,9 @@ exports.removeAddress = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(500).json({
-            msg: 'Server Error'
+            errors: [{
+                msg: 'Server Error'
+            }]
         })
     }
 }
@@ -341,7 +361,9 @@ exports.editAddress = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(500).json({
-            msg: 'Server Error'
+            errors: [{
+                msg: 'Server Error'
+            }]
         })
     }
 }
